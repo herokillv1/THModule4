@@ -64,11 +64,18 @@ public class Citycontroller {
     }
 
     @PostMapping("/create-city")
-    public ModelAndView saveCustomer(@ModelAttribute("customer") City city){
+    public ModelAndView saveCustomer(@ModelAttribute("customer") City city , @RequestParam("search") Optional<String> search,@SortDefault(value = {"id"},direction = Sort.Direction.ASC) @PageableDefault(value = 3) Pageable pageable){
         cityService.save(city);
-        ModelAndView modelAndView = new ModelAndView("city/create");
-        modelAndView.addObject("city", new City());
+        Page<City> cities;
+        if(search.isPresent()){
+            cities = cityService.findAllByNameContaining(search.get(), pageable);
+        } else {
+            cities = cityService.fillAll(pageable);
+        }
+        ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("message", "Thêm thành công");
+        modelAndView.addObject("search", search.orElse(""));
+        modelAndView.addObject("cities", cities);
         return modelAndView;
     }
 
@@ -87,11 +94,18 @@ public class Citycontroller {
     }
 
     @PostMapping("/edit-city")
-    public ModelAndView updateCustomer(@ModelAttribute("city") City city){
+    public ModelAndView updateCustomer(@ModelAttribute("city") City city , @RequestParam("search") Optional<String> search,@SortDefault(value = {"id"},direction = Sort.Direction.ASC) @PageableDefault(value = 3) Pageable pageable){
         cityService.save(city);
-        ModelAndView modelAndView = new ModelAndView("city/edit");
-        modelAndView.addObject("city", city);
+        Page<City> cities;
+        if(search.isPresent()){
+            cities = cityService.findAllByNameContaining(search.get(), pageable);
+        } else {
+            cities = cityService.fillAll(pageable);
+        }
+        ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("message", "Cập nhật thành công");
+        modelAndView.addObject("search", search.orElse(""));
+        modelAndView.addObject("cities", cities);
         return modelAndView;
     }
 

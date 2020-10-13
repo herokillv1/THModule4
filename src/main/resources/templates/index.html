@@ -9,6 +9,7 @@
 
 <a href="/create-city">Thêm thành phố</a>
 <br>
+<br>
 <form th:action="@{/}">
     Search:
     <label>
@@ -17,6 +18,10 @@
     <input type="submit" value="Search"/>
 </form>
 <br/>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<br>
 <table border="1">
     <tr>
         <th>#</th>
@@ -35,12 +40,13 @@
         </tr>
     </th:block>
 </table>
+<br>
 <div>
     <a th:href="@{'/'(page=${cities.number - 1},search=${search})}" th:if="${cities.hasPrevious()}">Previous</a>
     <span th:text="${cities.number + 1}"></span>/<span th:text="${cities.totalPages}"></span>
     <a th:href="@{'/'(page=${cities.number + 1},search=${search})}" th:if="${cities.hasNext()}">Next</a>
 </div>
-
+<br>
 <a href="/countries">Quốc gia</a>
 </body>
 </html>

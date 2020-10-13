@@ -5,22 +5,26 @@
     <title>Delete city</title>
 </head>
 <body>
-    <h1>Delete city</h1>
-    <h2>Are you sure?</h2>
+    <h1>Xóa thành phố</h1>
+    <h2>Bạn chắc chưa ??:D??</h2>
 
     <form th:action="@{/delete-city}" th:object="${city}" method="post">
         <input th:type="hidden" name="id" th:field="*{id}">
         <table>
             <tr>
-                <td>Name:</td>
+                <td>Tên:</td>
                 <td th:text="${city.name}"></td>
             </tr>
             <tr>
-                <td>Area:</td>
+                <td>Quốc gia:</td>
+                <td th:text="${city.country.name}"></td>
+            </tr>
+            <tr>
+                <td>Diện tích:</td>
                 <td th:text="${city.area}"></td>
             </tr>
             <tr>
-                <td>Population:</td>
+                <td>Dân số:</td>
                 <td th:text="${city.population}"></td>
             </tr>
             <tr>
@@ -28,11 +32,7 @@
                 <td th:text="${city.gdp}"></td>
             </tr>
             <tr>
-                <td>Country:</td>
-                <td th:text="${city.country.name}"></td>
-            </tr>
-            <tr>
-                <td>Introduce:</td>
+                <td>Giới thiệu:</td>
                 <td th:text="${city.introduce}"></td>
             </tr>
             <tr>

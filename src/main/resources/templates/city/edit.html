@@ -7,9 +7,6 @@
 <body>
     <h1>Chỉnh sửa thành phố</h1>
     <br>
-    <th:block th:if="${message}">
-        <p th:text="${message}"></p>
-    </th:block>
     <form th:action="@{/edit-city}" th:object="${city}" method="post">
         <input th:type="hidden" name="id" th:field="*{id}">
         <table>
