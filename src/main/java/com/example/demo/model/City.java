@@ -4,6 +4,8 @@ package com.example.demo.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "Cities")
@@ -14,16 +16,16 @@ public class City {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable=false)
+    @NotEmpty
     private String name;
 
-    @Column(nullable=false)
+    @Min(value = 0, message = " phải là số dương")
     private Float area;
 
-    @Column(nullable=false)
+    @Min(value = 0, message = " phải là số dương")
     private Float population;
 
-    @Column(nullable=false)
+    @Min(value = 0, message = " phải là số dương")
     private Float  gdp;
 
     @ManyToOne

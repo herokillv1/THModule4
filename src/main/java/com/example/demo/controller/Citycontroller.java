@@ -12,9 +12,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -64,7 +66,12 @@ public class Citycontroller {
     }
 
     @PostMapping("/create-city")
-    public ModelAndView saveCustomer(@ModelAttribute("customer") City city , @RequestParam("search") Optional<String> search,@SortDefault(value = {"id"},direction = Sort.Direction.ASC) @PageableDefault(value = 3) Pageable pageable){
+    public ModelAndView saveCustomer(@Valid @ModelAttribute("city") City city , BindingResult bindingResult , @RequestParam("search") Optional<String> search, @SortDefault(value = {"id"},direction = Sort.Direction.ASC) @PageableDefault(value = 3) Pageable pageable){
+        if(bindingResult.hasErrors()){
+            ModelAndView modelAndView = new ModelAndView("city/create");
+            modelAndView.addObject(city);
+            return modelAndView;
+        }
         cityService.save(city);
         Page<City> cities;
         if(search.isPresent()){

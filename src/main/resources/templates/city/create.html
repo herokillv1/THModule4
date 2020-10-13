@@ -11,7 +11,8 @@
         <table>
             <tr>
                 <td>Tên:</td>
-                <td><input type="text" th:field="*{name}"/></td>
+                <th:block th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></th:block>
+                <td><input required type="text" th:field="*{name}"/></td>
             </tr>
             <tr>
                 <td>Quốc gia:</td>
@@ -23,19 +24,23 @@
             </tr>
             <tr>
                 <td>Diện tích:</td>
-                <td><input type="text" th:field="*{area}"/></td>
+                <th:block th:if="${#fields.hasErrors('area')}" th:errors="*{area}"></th:block>
+                <td><input required type="text" th:field="*{area}"/></td>
             </tr>
             <tr>
                 <td>Dân số:</td>
-                <td><input type="text" th:field="*{population}"/></td>
+                <th:block th:if="${#fields.hasErrors('population')}" th:errors="*{population}"></th:block>
+                <td><input required type="text" th:field="*{population}"/></td>
             </tr>
             <tr>
                 <td>GDP:</td>
-                <td><input type="text" th:field="*{gdp}"/></td>
+                <th:block th:if="${#fields.hasErrors('gdp')}" th:errors="*{gdp}"></th:block>
+                <td><input required type="text" th:field="*{gdp}"/></td>
             </tr>
             <tr>
                 <td>Giới thiệu:</td>
-                <td><textarea rows="5" cols="25" th:field="*{introduce}"></textarea></td>
+                <th:block th:if="${#fields.hasErrors('introduce')}" th:errors="*{introduce}"></th:block>
+                <td><textarea required rows="5" cols="25" th:field="*{introduce}"></textarea></td>
 
             </tr>
             <tr>
