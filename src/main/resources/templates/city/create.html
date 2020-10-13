@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create city</title>
+</head>
+<body>
+    <h1>Thêm thành phố</h1>
+    <br>
+    <th:block th:if="${message}">
+        <p th:text="${message}"></p>
+    </th:block>
+    <form th:action="@{/create-city}" th:object="${city}" method="post">
+        <table>
+            <tr>
+                <td>Tên:</td>
+                <td><input type="text" th:field="*{name}"/></td>
+            </tr>
+            <tr>
+                <td>Quốc gia:</td>
+                <td>
+                    <select th:field="*{country}">
+                        <option th:each="c : ${countries}" th:value="${c.id}" th:text="${c.name}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Diện tích:</td>
+                <td><input type="text" th:field="*{area}"/></td>
+            </tr>
+            <tr>
+                <td>Dân số:</td>
+                <td><input type="text" th:field="*{population}"/></td>
+            </tr>
+            <tr>
+                <td>GDP:</td>
+                <td><input type="text" th:field="*{gdp}"/></td>
+            </tr>
+            <tr>
+                <td>Giới thiệu:</td>
+                <td><textarea rows="5" cols="25" th:field="*{introduce}"></textarea></td>
+
+            </tr>
+            <tr>
+                <td><input type="submit" value="Nhập thành phố"></td>
+                <td><button><a href="/" style="text-decoration: none">Thoát</a></button></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

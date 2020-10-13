@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="${'Thành phố '+ city.name}"></h1>
+<p>
+    <a href="/">Danh sách thành phố</a>
+</p>
+<div>
+    <div>
+        <label>Tên : </label>
+        <label th:text="${city.name}"></label>
+    </div>
+    <div>
+        <label>Quốc gia : </label>
+        <label th:text="${city.country.name}"></label>
+    </div>
+    <div>
+        <label>Diện tích : </label>
+        <label th:text="${city.area}"></label>
+    </div>
+    <div>
+        <label>Dân số : </label>
+        <label th:text="${city.population}"></label>
+    </div>
+    <div>
+        <label>GDP : </label>
+        <label th:text="${city.gdp}"></label>
+    </div>
+    <div>
+        <label>Giới thiệu : </label>
+        <label th:text="${city.introduce}"></label>
+    </div>
+</div>
+
+<br>
+<div>
+<a th:href="@{/edit-city/__${city.id}__ }">Chỉnh sửa</a> |
+<a th:href="@{/delete-city/__${city.id}__ }">Xóa</a>
+</div>
+</body>
+</html>
